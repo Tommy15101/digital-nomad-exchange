@@ -34,7 +34,7 @@ contract Token {
         public
         returns (bool success)
     {
-        require(balanceOf[msg.sender] >= _value, "Not enough tokens!");
+        require(balanceOf[msg.sender] >= _value);
         _transfer(msg.sender, _to, _value);
         return true;
     }
@@ -44,7 +44,7 @@ contract Token {
         address _to,
         uint256 _value
     ) internal {
-        require(_to != address(0), "Invalid Address");
+        require(_to != address(0));
         balanceOf[_from] = balanceOf[_from] - _value;
         balanceOf[_to] = balanceOf[_to] + _value;
         emit Transfer(_from, _to, _value);
