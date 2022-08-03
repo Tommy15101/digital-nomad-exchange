@@ -6,7 +6,8 @@ import {
   loadProvider, 
   loadNetwork, 
   loadAccount,
-  loadToken 
+  loadTokens,
+  loadExchange 
 } from '../store/interactions';
 
 function App() {
@@ -14,12 +15,22 @@ function App() {
   const dispatch = useDispatch()
 
   const loadBlockchainData = async () => {
-    await loadAccount(dispatch)
-    // Connect etheres to the blockchain
+    // Connect Ethers to the Blockchain
     const provider = loadProvider(dispatch)
+    // Fetch current network's chainId (e.g. hardhat: 31337, kovan: 42)
     const chainId = await loadNetwork(provider, dispatch)
 
-    await loadToken(provider, config[chainId].digitalNomad.address, dispatch)
+    // Fetch current account & balance from Metamask
+    await loadAccount(dispatch, provider)
+
+    // Load Token Smart Contracts
+    const digitalNomad = config[chainId].digitalNomad
+    const phuket = config[chainId].phuket
+    await loadTokens(provider, [digitalNomad.address, phuket.address], dispatch)
+
+    // Load Exchange Smart Contract
+    const exchange = config[chainId].exchange
+    await loadExchange(provider, exchange.address, dispatch)
   }
 
   useEffect(() => {
