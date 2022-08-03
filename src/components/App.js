@@ -7,11 +7,13 @@ import {
   loadNetwork, 
   loadAccount,
   loadTokens,
-  loadExchange 
+  loadExchange ,
+  subscribeToEvents
 } from '../store/interactions';
 
 import Navbar from './Navbar';
 import Markets from './Markets';
+import Balance from './Balance';
 
 function App() {
 
@@ -39,8 +41,11 @@ function App() {
     await loadTokens(provider, [digitalNomad.address, phuket.address], dispatch)
 
     // Load Exchange Smart Contract
-    const exchange = config[chainId].exchange
-    await loadExchange(provider, exchange.address, dispatch)
+    const exchangeConfig = config[chainId].exchange
+    const exchange = await loadExchange(provider, exchangeConfig.address, dispatch)
+
+    // Listen To Events
+    subscribeToEvents(exchange, dispatch)
   }
 
   useEffect(() => {
@@ -57,7 +62,7 @@ function App() {
 
           <Markets />
 
-          {/* Balance */}
+          <Balance />
 
           {/* Order */}
 
