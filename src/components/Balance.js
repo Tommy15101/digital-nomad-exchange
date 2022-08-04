@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import logo from '../assets/dapp.svg';
 import ethlogo from '../assets/eth.svg';
 
@@ -9,7 +10,7 @@ import {
 } from "../store/interactions";
 
 const Balance = () => {
-    const [isDeposit, setIsDeposit] = useState()
+    const [isDeposit, setIsDeposit] = useState(true)
     const [token1TransferAmount, setToken1TransferAmount] = useState(0)
     const [token2TransferAmount, setToken2TransferAmount] = useState(0)
 
