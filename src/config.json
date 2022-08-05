@@ -28,5 +28,20 @@
             "address": "0x0B4F4D43A752D70c30BCEE326866F249e5dF63AC"
         },
         "explorerURL": "https://kovan.etherscan.io/"
+    },
+    "80001": {
+        "exchange": {
+            "address": "0x26aC6165C771914203079Ad5CF1069339EB499B9"
+        },
+        "digitalNomad": {
+            "address": "0x589C96D35175D37c6D282B5c7C5256f1DE446C09"
+        },
+        "phuket": {
+            "address": "0x0B4F4D43A752D70c30BCEE326866F249e5dF63AC"
+        },
+        "bali": {
+            "address": "0x6071b9aCE2723FA6fc6db9e6D5655bAf713fB40a"
+        },
+        "explorerURL": "https://mumbai.polygonscan.com/"
     }
 }
